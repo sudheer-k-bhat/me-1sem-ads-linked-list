@@ -102,3 +102,31 @@ SList* slist_delnode_tail(SList *list){
     }
     return list;
 }
+
+int32_t slist_find_max_element(const SList *list){
+    assert(list != NULL);
+    int32_t max = INT32_MIN;
+    if(list->head != NULL){
+        Node* cur;
+        for(cur = list->head; cur != NULL; cur = cur->next){
+            if(cur->data > max){
+                max = cur->data;
+            }
+        }
+    }
+    return max;
+}
+
+int32_t slist_find_min_element(const SList *list){
+    assert(list != NULL);
+    int32_t min = INT32_MAX;
+    if(list->head != NULL){
+        Node* cur;
+        for(cur = list->head; cur != NULL; cur = cur->next){
+            if(cur->data < min){
+                min = cur->data;
+            }
+        }
+    }
+    return min;
+}

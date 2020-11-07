@@ -60,11 +60,34 @@ void test_del_tail(){
     assert(slist_length(list) == 2);
 }
 
+void test_find_max_element(){
+    SList sl = slist_new();
+    SList *list = &sl;
+    list = slist_addnode_tail(list, 10);
+    list = slist_addnode_tail(list, 50);
+    list = slist_addnode_tail(list, 30);
+    list = slist_addnode_tail(list, 20);
+    assert(slist_find_max_element(list) == 50);
+}
+
+void test_find_min_element(){
+    SList sl = slist_new();
+    SList *list = &sl;
+    list = slist_addnode_tail(list, 50);
+    list = slist_addnode_tail(list, 10);
+    list = slist_addnode_tail(list, 30);
+    list = slist_addnode_tail(list, 20);
+    list = slist_addnode_tail(list, 5);
+    assert(slist_find_min_element(list) == 5);
+}
+
 int main(){
     test_empty_list();
     test_add_at_head();
     test_add_at_tail();
     test_del_head();
     test_del_tail();
+    test_find_max_element();
+    test_find_min_element();
     return 0;
 }

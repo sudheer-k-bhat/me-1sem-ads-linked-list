@@ -30,3 +30,7 @@ SList* slist_addnode_tail(SList *list, int32_t val);
 SList* slist_delnode_head(SList *list);
 
 SList* slist_delnode_tail(SList *list);
+
+int32_t slist_find_max_element(const SList *list);
+
+int32_t slist_find_min_element(const SList *list);
