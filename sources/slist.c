@@ -130,3 +130,20 @@ int32_t slist_find_min_element(const SList *list){
     }
     return min;
 }
+
+SList* slist_add_element_after(SList* list, int32_t after_this, int32_t val){
+    assert(list != NULL);
+    if(list->head != NULL){
+        Node* cur;
+        for(cur = list->head; cur != NULL; cur = cur->next){
+            if(cur->data == after_this){
+                Node *new = _get_new_node(val);
+                Node* next = cur->next;
+                new->next = next;
+                cur->next = new;
+                list->length += 1;
+            }
+        }        
+    }
+    return list;
+}

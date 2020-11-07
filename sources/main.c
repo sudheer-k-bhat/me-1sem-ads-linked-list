@@ -2,13 +2,15 @@
 
 #include "slist.h"
 
-void test_empty_list(){
+void test_empty_list()
+{
     SList slist = slist_new();
     SList *list = &slist;
     assert(slist_length(list) == 0);
 }
 
-void test_add_at_head(){
+void test_add_at_head()
+{
     SList sl = slist_new();
     SList *list = &sl;
     assert(slist_length(list) == 0);
@@ -20,7 +22,8 @@ void test_add_at_head(){
     assert(slist_lookup(list, 20) == 1);
 }
 
-void test_add_at_tail(){
+void test_add_at_tail()
+{
     SList sl = slist_new();
     SList *list = &sl;
     assert(slist_length(list) == 0);
@@ -32,7 +35,8 @@ void test_add_at_tail(){
     assert(slist_lookup(list, 10) == 1);
 }
 
-void test_del_head(){
+void test_del_head()
+{
     SList sl = slist_new();
     SList *list = &sl;
     list = slist_addnode_head(list, 10);
@@ -46,7 +50,8 @@ void test_del_head(){
     assert(slist_length(list) == 2);
 }
 
-void test_del_tail(){
+void test_del_tail()
+{
     SList sl = slist_new();
     SList *list = &sl;
     list = slist_addnode_head(list, 10);
@@ -60,7 +65,8 @@ void test_del_tail(){
     assert(slist_length(list) == 2);
 }
 
-void test_find_max_element(){
+void test_find_max_element()
+{
     SList sl = slist_new();
     SList *list = &sl;
     list = slist_addnode_tail(list, 10);
@@ -70,7 +76,8 @@ void test_find_max_element(){
     assert(slist_find_max_element(list) == 50);
 }
 
-void test_find_min_element(){
+void test_find_min_element()
+{
     SList sl = slist_new();
     SList *list = &sl;
     list = slist_addnode_tail(list, 50);
@@ -81,7 +88,19 @@ void test_find_min_element(){
     assert(slist_find_min_element(list) == 5);
 }
 
-int main(){
+void test_slist_add_element_after()
+{
+    SList sl = slist_new();
+    SList *list = &sl;
+    list = slist_addnode_tail(list, 10);
+    list = slist_addnode_tail(list, 20);
+    list = slist_addnode_tail(list, 30);
+    list = slist_add_element_after(list, 20, 25);
+    assert(slist_length(list) == 4 && slist_lookup(list, 25) == 1);
+}
+
+int main()
+{
     test_empty_list();
     test_add_at_head();
     test_add_at_tail();
@@ -89,5 +108,6 @@ int main(){
     test_del_tail();
     test_find_max_element();
     test_find_min_element();
+    test_slist_add_element_after();
     return 0;
 }
