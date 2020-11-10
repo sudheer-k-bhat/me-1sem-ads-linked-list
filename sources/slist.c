@@ -206,6 +206,17 @@ SList* slist_union(const SList *list1, const SList *list2, SList* new_list){
     return new_list;
 }
 
+SList* slist_intersection(const SList *list1, const SList *list2, SList* new_list){
+    assert(list1 != NULL && list2 != NULL);
+    Node* cur;
+    for(cur = list2->head; cur != NULL; cur = cur->next){
+        if(slist_lookup(list1, cur->data) == BOOL_TRUE){
+            new_list = slist_addnode_tail(new_list, cur->data);
+        }
+    }
+    return new_list;
+}
+
 void slist_to_string(SList* list){
     assert(list != NULL);
     Node* cur;

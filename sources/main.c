@@ -147,6 +147,28 @@ void test_slist_union()
     assert(slist_length(list3) == 3);
 }
 
+void test_slist_intersection()
+{
+    SList sl1 = slist_new();
+    SList *list1 = &sl1;
+    list1 = slist_addnode_tail(list1, 10);
+    list1 = slist_addnode_tail(list1, 30);
+
+    SList sl2 = slist_new();
+    SList *list2 = &sl2;
+    list2 = slist_addnode_tail(list2, 10);
+    list2 = slist_addnode_tail(list2, 40);
+
+    SList sl3 = slist_new();
+    SList *new_list = &sl3;
+    SList* list3 = slist_intersection(list1, list2, new_list);
+    slist_to_string(list1);
+    slist_to_string(list2);
+    slist_to_string(list3);
+    //TODO more asserts
+    assert(slist_length(list3) == 1);
+}
+
 int main()
 {
     test_empty_list();
@@ -160,5 +182,6 @@ int main()
     test_slist_equals();
     test_slist_reverse();
     test_slist_union();
+    test_slist_intersection();
     return 0;
 }
