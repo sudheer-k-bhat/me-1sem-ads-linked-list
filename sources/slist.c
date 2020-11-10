@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <assert.h>
 
+#include "log.h"
 #include "slist.h"
 
 SList slist_new()
@@ -131,6 +132,7 @@ int32_t slist_find_min_element(const SList *list){
     return min;
 }
 
+//TODO handle tail
 SList* slist_add_element_after(SList* list, int32_t after_this, int32_t val){
     assert(list != NULL);
     if(list->head != NULL){
@@ -146,4 +148,74 @@ SList* slist_add_element_after(SList* list, int32_t after_this, int32_t val){
         }        
     }
     return list;
+}
+
+// SList* slist_del_element(SList* list, int32_t key){
+//     assert(list != NULL);
+//     if(list->head != NULL){
+//         Node* cur;
+//         for(cur = list->head; cur != NULL; cur = cur->next){
+//             if(cur->data == key){
+
+//             }
+//         }
+//     }
+// }
+
+BOOL slist_equals(const SList *list1, const SList *list2){
+    assert(list1 != NULL && list2 != NULL);
+    BOOL is_equal = BOOL_FALSE;
+    if(list1->length == list2->length){
+        Node* cur1;
+        Node* cur2;
+        is_equal = BOOL_TRUE;
+
+        for(cur1 = list1->head, cur2 = list2->head; cur1 != NULL; cur1 = cur1->next, cur2 = cur2->next){
+            if(cur1->data != cur2->data){
+                is_equal = BOOL_FALSE;
+                break;
+            }
+        }
+    }
+    return is_equal;
+}
+
+SList* slist_reverse_elements(SList* list){
+    assert(list != NULL);
+    SList n_list = slist_new();
+    SList* new_list = &n_list;
+    if(list->length > 0){
+        Node* cur;
+        for(cur = list->head; cur != NULL; cur = cur->next){
+            slist_addnode_head(new_list, cur->data);
+        }
+    }
+    return new_list;
+}
+
+//TODO improve efficiency
+SList* slist_union(SList *list1, SList *list2){
+    assert(list1 != NULL && list2 != NULL);
+    SList n_list = slist_new();
+    SList* new_list = &n_list;
+    Node* cur;
+    for(cur = list2->head; cur != NULL; cur = cur->next){
+        if(slist_lookup(list1, cur->data) == BOOL_FALSE){
+            slist_addnode_tail(new_list, cur->data);
+        }
+    }
+    for(cur = list1->head; cur != NULL; cur = cur->next){
+        slist_addnode_tail(new_list, cur->data);
+    }
+    return new_list;
+}
+
+void slist_to_string(SList* list){
+    assert(list != NULL);
+    Node* cur;
+    log_debug("SList{length: %d, elements: [", list->length);
+    // for(cur = list->head; cur != NULL; cur = cur->next){
+    //     log_debug("%d", cur->data);
+    // }
+    log_debug("]}");
 }

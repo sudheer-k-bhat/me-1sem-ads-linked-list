@@ -15,6 +15,11 @@ struct _slist_
     uint32_t length;
 };
 
+typedef enum {
+    BOOL_FALSE = 0,
+    BOOL_TRUE = 1
+}BOOL;
+
 SList slist_new();
 
 //No modifications are neeed, so using `const`
@@ -35,18 +40,20 @@ int32_t slist_find_max_element(const SList *list);
 
 int32_t slist_find_min_element(const SList *list);
 
-//TODO
-
 SList* slist_add_element_after(SList* list, int32_t after_this, int32_t val);
 
-SList* slist_del_element(SList* list, int32_t key);
+BOOL slist_equals(const SList *list1, const SList *list2);
 
 SList* slist_reverse_elements(SList* list);
 
-uint8_t slist_equals(const SList *list1, const SList *list2);
+//TODO
+
+SList* slist_del_element(SList* list, int32_t key);
 
 SList* slist_union(SList *list1, SList *list2);
 
 SList* slist_intersection(SList *list1, SList *list2);
+
+void slist_to_string(SList* list);
 
 
