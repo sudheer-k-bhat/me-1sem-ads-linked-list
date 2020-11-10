@@ -44,7 +44,7 @@ SList* slist_add_element_after(SList* list, int32_t after_this, int32_t val);
 
 BOOL slist_equals(const SList *list1, const SList *list2);
 
-SList* slist_reverse_elements(SList* list);
+SList* slist_reverse_elements(SList* list, SList* new_list);
 
 //TODO
 

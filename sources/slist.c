@@ -180,14 +180,12 @@ BOOL slist_equals(const SList *list1, const SList *list2){
     return is_equal;
 }
 
-SList* slist_reverse_elements(SList* list){
+SList* slist_reverse_elements(SList* list, SList* new_list){
     assert(list != NULL);
-    SList n_list = slist_new();
-    SList* new_list = &n_list;
     if(list->length > 0){
         Node* cur;
         for(cur = list->head; cur != NULL; cur = cur->next){
-            slist_addnode_head(new_list, cur->data);
+            new_list = slist_addnode_head(new_list, cur->data);
         }
     }
     return new_list;
@@ -214,8 +212,8 @@ void slist_to_string(SList* list){
     assert(list != NULL);
     Node* cur;
     log_debug("SList{length: %d, elements: [", list->length);
-    // for(cur = list->head; cur != NULL; cur = cur->next){
-    //     log_debug("%d", cur->data);
-    // }
+    for(cur = list->head; cur != NULL; cur = cur->next){
+        log_debug("%d", cur->data);
+    }
     log_debug("]}");
 }
