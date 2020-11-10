@@ -44,13 +44,13 @@ SList* slist_add_element_after(SList* list, int32_t after_this, int32_t val);
 
 BOOL slist_equals(const SList *list1, const SList *list2);
 
-SList* slist_reverse_elements(SList* list, SList* new_list);
+SList* slist_reverse_elements(const SList* list, SList* new_list);
+
+SList* slist_union(const SList *list1, const SList *list2, SList* new_list);
 
 //TODO
 
 SList* slist_del_element(SList* list, int32_t key);
-
-SList* slist_union(SList *list1, SList *list2);
 
 SList* slist_intersection(SList *list1, SList *list2);
 

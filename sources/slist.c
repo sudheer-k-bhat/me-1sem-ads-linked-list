@@ -180,7 +180,7 @@ BOOL slist_equals(const SList *list1, const SList *list2){
     return is_equal;
 }
 
-SList* slist_reverse_elements(SList* list, SList* new_list){
+SList* slist_reverse_elements(const SList* list, SList* new_list){
     assert(list != NULL);
     if(list->length > 0){
         Node* cur;
@@ -192,14 +192,12 @@ SList* slist_reverse_elements(SList* list, SList* new_list){
 }
 
 //TODO improve efficiency
-SList* slist_union(SList *list1, SList *list2){
+SList* slist_union(const SList *list1, const SList *list2, SList* new_list){
     assert(list1 != NULL && list2 != NULL);
-    SList n_list = slist_new();
-    SList* new_list = &n_list;
     Node* cur;
     for(cur = list2->head; cur != NULL; cur = cur->next){
         if(slist_lookup(list1, cur->data) == BOOL_FALSE){
-            slist_addnode_tail(new_list, cur->data);
+            new_list = slist_addnode_tail(new_list, cur->data);
         }
     }
     for(cur = list1->head; cur != NULL; cur = cur->next){

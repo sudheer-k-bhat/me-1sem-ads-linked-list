@@ -140,9 +140,11 @@ void test_slist_union()
     list2 = slist_addnode_tail(list2, 10);
     list2 = slist_addnode_tail(list2, 40);
 
-    SList* list3 = slist_union(list1, list2);
+    SList sl3 = slist_new();
+    SList *new_list = &sl3;
+    SList* list3 = slist_union(list1, list2, new_list);
+    //TODO more asserts
     assert(slist_length(list3) == 3);
-    slist_to_string(list3);
 }
 
 int main()
@@ -157,6 +159,6 @@ int main()
     test_slist_add_element_after();
     test_slist_equals();
     test_slist_reverse();
-    // test_slist_union();
+    test_slist_union();
     return 0;
 }
