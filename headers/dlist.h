@@ -1,5 +1,7 @@
 #include <stdint.h>
 
+#include "slist.h"
+
 typedef struct _node_ Node;
 struct _node_
 {

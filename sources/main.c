@@ -162,11 +162,55 @@ void test_slist_intersection()
     SList sl3 = slist_new();
     SList *new_list = &sl3;
     SList* list3 = slist_intersection(list1, list2, new_list);
-    slist_to_string(list1);
-    slist_to_string(list2);
-    slist_to_string(list3);
     //TODO more asserts
     assert(slist_length(list3) == 1);
+}
+
+void test_slist_del_element1()
+{
+    SList sl = slist_new();
+    SList *list = &sl;
+    list = slist_addnode_tail(list, 10);
+    list = slist_del_element(list, 10);
+    assert(slist_length(list) == 0 && slist_lookup(list, 10) == BOOL_FALSE);
+}
+
+void test_slist_del_element2()
+{
+    SList sl = slist_new();
+    SList *list = &sl;
+    list = slist_addnode_tail(list, 10);
+    list = slist_addnode_tail(list, 20);
+    list = slist_del_element(list, 20);
+    assert(slist_length(list) == 1 && slist_lookup(list, 20) == BOOL_FALSE);
+}
+
+void test_slist_del_element2_1()
+{
+    SList sl = slist_new();
+    SList *list = &sl;
+    list = slist_addnode_tail(list, 10);
+    list = slist_addnode_tail(list, 20);
+    list = slist_del_element(list, 10);
+    assert(slist_length(list) == 1 && slist_lookup(list, 10) == BOOL_FALSE);
+}
+
+void test_slist_del_element3()
+{
+    SList sl = slist_new();
+    SList *list = &sl;
+    list = slist_addnode_tail(list, 10);
+    list = slist_addnode_tail(list, 20);
+    list = slist_addnode_tail(list, 30);
+    list = slist_del_element(list, 20);
+    assert(slist_length(list) == 2 && slist_lookup(list, 20) == BOOL_FALSE);
+}
+
+void test_slist_del_element(){
+    test_slist_del_element1();
+    test_slist_del_element2();
+    test_slist_del_element2_1();
+    test_slist_del_element3();
 }
 
 int main()
@@ -183,5 +227,6 @@ int main()
     test_slist_reverse();
     test_slist_union();
     test_slist_intersection();
+    test_slist_del_element();
     return 0;
 }

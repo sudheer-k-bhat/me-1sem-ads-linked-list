@@ -50,10 +50,8 @@ SList* slist_union(const SList *list1, const SList *list2, SList* new_list);
 
 SList* slist_intersection(const SList *list1, const SList *list2, SList* new_list);
 
-//TODO
+void slist_to_string(const SList* list);
 
 SList* slist_del_element(SList* list, int32_t key);
-
-void slist_to_string(SList* list);
 
 
