@@ -1,3 +1,10 @@
+/**
+ * Set implementation.
+ * 
+ * @author sudheer-k-bhat
+ **/
+#ifndef SET_H
+#define SET_H
 #include <stdint.h>
 
 #include "slist.h"
@@ -22,8 +29,6 @@ typedef struct {
 
 Set set_new();
 
-//No modifications are neeed, so using `const`
-//not using `stdbool` bcoz not supported across compilers & platforms.
 uint8_t set_lookup(const Set *set, int32_t key);
 
 int32_t set_length(const Set *set);
@@ -55,3 +60,4 @@ void set_to_string(const Set* set);
 Set* set_del_element(Set* set, int32_t key);
 
 
+#endif

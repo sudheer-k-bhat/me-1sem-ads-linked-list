@@ -1,3 +1,8 @@
+/**
+ * Single linked list.
+ * 
+ * @author sudheer-k-bhat
+ **/
 #ifndef SLIST_H
 #define SLIST_H
 
