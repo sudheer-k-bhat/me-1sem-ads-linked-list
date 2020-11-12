@@ -228,6 +228,39 @@ void test_set_del_element(){
     test_set_del_element3();
 }
 
+void test_set_add_at_head_duplicate()
+{
+    Set sl = set_new();
+    Set *set = &sl;
+    SetResult result;
+    set = set_addnode_head(set, 10, &result);
+    set = set_addnode_head(set, 20, &result);
+    set = set_addnode_head(set, 20, &result);
+    assert(result.status == SET_DUPLICATE_ELEMENT && set_length(set) == 2);
+}
+
+void test_set_add_at_tail_duplicate()
+{
+    Set sl = set_new();
+    Set *set = &sl;
+    SetResult result;
+    set = set_addnode_tail(set, 10, &result);
+    set = set_addnode_tail(set, 20, &result);
+    set = set_addnode_tail(set, 20, &result);
+    assert(result.status == SET_DUPLICATE_ELEMENT && set_length(set) == 2);
+}
+
+void test_set_add_element_after_duplicate()
+{
+    Set sl = set_new();
+    Set *set = &sl;
+    SetResult result;
+    set = set_addnode_tail(set, 10, &result);
+    set = set_addnode_tail(set, 20, &result);
+    set = set_add_element_after(set, 20, 10, &result);
+    assert(result.status == SET_DUPLICATE_ELEMENT && set_length(set) == 2);
+}
+
 void test_set(){
     test_set_empty_set();
     test_set_add_at_head();
@@ -242,4 +275,8 @@ void test_set(){
     test_set_union();
     test_set_intersection();
     test_set_del_element();
+
+    test_set_add_at_head_duplicate();
+    test_set_add_at_tail_duplicate();
+    test_set_add_element_after_duplicate();
 }
