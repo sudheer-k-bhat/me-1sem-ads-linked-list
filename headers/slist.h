@@ -1,3 +1,6 @@
+#ifndef SLIST_H
+#define SLIST_H
+
 #include <stdint.h>
 
 typedef struct _node_ Node;
@@ -54,4 +57,4 @@ void slist_to_string(const SList* list);
 
 SList* slist_del_element(SList* list, int32_t key);
 
-
+#endif

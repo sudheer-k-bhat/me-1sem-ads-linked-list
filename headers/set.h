@@ -1,52 +1,57 @@
 #include <stdint.h>
 
-typedef struct _node_ Node;
-struct _node_
-{
-    int32_t data;
-    Node *next;
-};
+#include "slist.h"
 
-typedef struct _slist_ SList;
-struct _slist_
+typedef struct _set_ Set;
+struct _set_
 {
     Node *head;
     Node *tail;
     uint32_t length;
 };
 
-SList slist_new();
+typedef enum {
+    SET_OK,
+    SET_DUPLICATE_ELEMENT
+}SET_STATUS;
+
+typedef struct {
+    int32_t data;
+    SET_STATUS status;
+}SetResult;
+
+Set set_new();
 
 //No modifications are neeed, so using `const`
 //not using `stdbool` bcoz not supported across compilers & platforms.
-uint8_t slist_lookup(const SList *list, int32_t key);
+uint8_t set_lookup(const Set *set, int32_t key);
 
-int32_t slist_length(const SList *list);
+int32_t set_length(const Set *set);
 
-SList* slist_addnode_head(SList *list, int32_t val);
+Set* set_addnode_head(Set *set, int32_t val, SetResult* result);
 
-SList* slist_addnode_tail(SList *list, int32_t val);
+Set* set_addnode_tail(Set *set, int32_t val, SetResult* result);
 
-SList* slist_delnode_head(SList *list);
+Set* set_add_element_after(Set* set, int32_t after_this, int32_t val, SetResult* result);
 
-SList* slist_delnode_tail(SList *list);
+Set* set_delnode_head(Set *set);
 
-int32_t slist_find_max_element(const SList *list);
+Set* set_delnode_tail(Set *set);
 
-int32_t slist_find_min_element(const SList *list);
+int32_t set_find_max_element(const Set *set);
 
-//TODO
+int32_t set_find_min_element(const Set *set);
 
-SList* slist_add_element_after(SList* list, int32_t after_this, int32_t val);
+BOOL set_equals(const Set *set1, const Set *set2);
 
-SList* slist_del_element(SList* list, int32_t key);
+Set* set_reverse_elements(const Set* set, Set* new_set);
 
-SList* slist_reverse_elements(SList* list);
+Set* set_union(const Set *set1, const Set *set2, Set* new_set);
 
-uint8_t slist_equals(const SList *list1, const SList *list2);
+Set* set_intersection(const Set *set1, const Set *set2, Set* new_set);
 
-SList* slist_union(SList *list1, SList *list2);
+void set_to_string(const Set* set);
 
-SList* slist_intersection(SList *list1, SList *list2);
+Set* set_del_element(Set* set, int32_t key);
 
 
