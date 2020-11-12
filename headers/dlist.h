@@ -1,54 +1,59 @@
+#ifndef DLIST_H
+#define DLIST_H
+
 #include <stdint.h>
 
-#include "slist.h"
-
-typedef struct _node_ Node;
-struct _node_
+typedef struct _dnode_ DNode;
+struct _dnode_
 {
     int32_t data;
-    Node *next;
+    DNode *next;
+    DNode *previous;
 };
 
-typedef struct _slist_ SList;
-struct _slist_
+typedef struct _dlist_ DList;
+struct _dlist_
 {
-    Node *head;
-    Node *tail;
+    DNode *head;
+    DNode *tail;
     uint32_t length;
 };
 
-SList slist_new();
+typedef enum {
+    BOOL_FALSE = 0,
+    BOOL_TRUE = 1
+}BOOL;
 
-//No modifications are neeed, so using `const`
-//not using `stdbool` bcoz not supported across compilers & platforms.
-uint8_t slist_lookup(const SList *list, int32_t key);
+DList dlist_new();
 
-int32_t slist_length(const SList *list);
+uint8_t dlist_lookup(const DList *list, int32_t key);
 
-SList* slist_addnode_head(SList *list, int32_t val);
+int32_t dlist_length(const DList *list);
 
-SList* slist_addnode_tail(SList *list, int32_t val);
+DList* dlist_addnode_head(DList *list, int32_t val);
 
-SList* slist_delnode_head(SList *list);
+DList* dlist_addnode_tail(DList *list, int32_t val);
 
-SList* slist_delnode_tail(SList *list);
+DList* dlist_delnode_head(DList *list);
 
-int32_t slist_find_max_element(const SList *list);
+DList* dlist_delnode_tail(DList *list);
 
-int32_t slist_find_min_element(const SList *list);
+int32_t dlist_find_max_element(const DList *list);
 
-//TODO
+int32_t dlist_find_min_element(const DList *list);
 
-SList* slist_add_element_after(SList* list, int32_t after_this, int32_t val);
+DList* dlist_add_element_after(DList* list, int32_t after_this, int32_t val);
 
-SList* slist_del_element(SList* list, int32_t key);
+BOOL dlist_equals(const DList *list1, const DList *list2);
 
-SList* slist_reverse_elements(SList* list);
+DList* dlist_reverse_elements(const DList* list, DList* new_list);
 
-uint8_t slist_equals(const SList *list1, const SList *list2);
+DList* dlist_union(const DList *list1, const DList *list2, DList* new_list);
 
-SList* slist_union(SList *list1, SList *list2);
+DList* dlist_intersection(const DList *list1, const DList *list2, DList* new_list);
 
-SList* slist_intersection(SList *list1, SList *list2);
+void dlist_to_string(const DList* list);
 
+DList* dlist_del_element(DList* list, int32_t key);
 
+#endif
